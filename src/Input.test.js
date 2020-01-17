@@ -81,12 +81,15 @@ describe('"guessWord" action creator call', () => {
         const submitButton = findByTestAttr(wrapper, 'submit-button');
         submitButton.simulate('click', { preventDefault() {} });
     })
-    it('calls "guessWord" when button is clicked', () => {
+    it('calls guessWord when button is clicked', () => {
         const guessWordCallCount = guessWordMock.mock.calls.length;
         expect(guessWordCallCount).toBe(1);
     })
     it('calls guessWord with input value as argument', () => {
         const guessedWordArg = guessWordMock.mock.calls[0][0];
         expect(guessedWordArg).toBe(guessedWord);
+    })
+    it('input box clears on submit', () => {
+        expect(wrapper.state('currentGuess')).toBe('')
     })
 });
